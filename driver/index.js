@@ -8,11 +8,9 @@ const bot = new TelegramBot(process.env.API_KEY_BOT, {
     
 });
 
-bot.on("polling_error", err => console.log(err.data.error.message));
+bot.on("polling_error", err => console.log(err.data?.error?.message));
 
 bot.on('text', async msg => {
-    console.log(msg);
-
     if (routes[msg.text]) {
         routes[msg.text](msg, bot);
     } else {

@@ -20,17 +20,23 @@ setCommands([
         command: "stats",
         description: "График писек",
     },
+    {
+        command: "battle",
+        description: "Битва писек",
+    }
 ]);
 
 add('/dick@polina_by_satchi_bot', require('./handlers/dick.js'));
 add('/start@polina_by_satchi_bot', require('./handlers/start.js'));
 add('/top@polina_by_satchi_bot', require('./handlers/top.js'));
 add('/stats@polina_by_satchi_bot', require('./handlers/stats.js'));
+add('/battle@polina_by_satchi_bot', require('./handlers/battle.js'));
 
 add('/dick', require('./handlers/dick.js'));
 add('/start', require('./handlers/start.js'));
 add('/top', require('./handlers/top.js'));
 add('/stats', require('./handlers/stats.js'));
+add('/battle', require('./handlers/battle.js'));
 
 add('*', () => null);
 
