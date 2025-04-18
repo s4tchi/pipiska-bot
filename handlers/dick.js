@@ -1,9 +1,10 @@
 const { getCollection } = require('../db/index.js');
+const randomAdd = require('../utils/randomAdd.js');
 
 const dickHandler = async (msg, bot)=> {
     const from = msg.from.id;
     const chatId = msg.chat.id;
-    const addSize = Math.floor(Math.random() * 15 - 5);
+    const addSize = randomAdd();
 
     const about = await getCollection('pipisa').findOne({ id: from, chatId: chatId });
 
