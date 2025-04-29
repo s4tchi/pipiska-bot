@@ -1,5 +1,6 @@
 const { getCollection } = require('../db/index.js');
 const randomAdd = require('../utils/randomAdd.js');
+const createLog = require('../services/logger/createLog.js');
 
 const dickHandler = async (msg, bot)=> {
     const from = msg.from.id;
@@ -14,6 +15,7 @@ const dickHandler = async (msg, bot)=> {
 
         allPiski.forEach((item, index) => {
             if (item.id === from) {
+                createLog(from, null, chatId, item.size);
                 return bot.sendMessage(chatId, `${item.name} увеличил пипиську на ${item.size} см, теперь у тебя ${item.size} см. Ты занимаешь ${index + 1} место в рейтинге`);
             }
         });
@@ -37,6 +39,7 @@ const dickHandler = async (msg, bot)=> {
 
     allPiski.forEach((item, index) => {
         if (item.id === from) {
+            createLog(from, null, chatId, (addSize + about.size) > 0 ? addSize : -addSize);
             return bot.sendMessage(chatId, `${item.name} увеличил пипиську на ${(addSize + about.size) > 0 ? addSize : -addSize} см, теперь у тебя ${item.size} см. Ты занимаешь ${index + 1} место в рейтинге`);
         }
     });

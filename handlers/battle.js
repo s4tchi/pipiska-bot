@@ -1,5 +1,6 @@
 const { getCollection } = require('../db/index.js');
 const randomDamage = require('../utils/randomDamage.js');
+const createLog = require('../services/logger/createLog.js');
 
 
 const battleHandler = async (msg, bot)=> {
@@ -33,6 +34,8 @@ const battleHandler = async (msg, bot)=> {
     await getCollection('pipisa').updateOne({ id: reply_to_message.from.id, chatId: chatId }, { $inc: { size: -damage } });
     await getCollection('pipisa').updateOne({ id: msg.from.id, chatId: chatId }, { $inc: { size: damage }, $set: { lastAttack: Date.now() } });
     
+    await createLog(msg.from.id, reply_to_message.from.id, chatId, damage);
+
     if (damage >= 0) {
         return bot.sendMessage(chatId, 'Ты ударил писькой по лбу <b><i>' + reply_to_message.from.first_name + '</i></b> и забрал себе ' + damage + ' см. Теперь у тебя ' + (you.size + damage) + ' см, Герой', { parse_mode: 'HTML' });
     }

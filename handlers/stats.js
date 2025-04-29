@@ -12,8 +12,6 @@ const statsHandler = async (msg, bot) => {
     const top = await getCollection('pipisa').find({ chatId: chatId }).sort({ size: -1 }).toArray();
     const sum = top.reduce((prev, current) => prev + current.size, 0);
 
-    console.log(colorFunction(top.length));
-
     const configuration = {
         type: 'doughnut',
         data: {    
