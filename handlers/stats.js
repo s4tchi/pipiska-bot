@@ -1,6 +1,6 @@
 const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
 const { getCollection } = require("../db/index.js");
-const colorFunction = require("../utils/colorfunction.js");
+const colorFunction = require("../utils/colorFunction.js");
 
 const width = 1200; //px
 const height = 900; //px
