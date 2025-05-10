@@ -33,7 +33,7 @@ const anal = async (msg, bot) => {
 
   const [xValues, yValues] = logsFrom.slice(0, 30).reduce(
     (acc, item) => {
-      const damage = item.from === from ? item.damage : item.damage;
+      const damage = item.from === from ? item.damage : -item.damage;
       userSize -= damage;
 
       return [
@@ -90,7 +90,7 @@ const anal = async (msg, bot) => {
         return { ...acc, [i.to]: acc[i.to] ? acc[i.to] + i.damage : i.damage };
       }, {}),
   ).reduce((acc, i) => (!acc || acc[1] < i[1] ? i : acc), null);
-  if (!victimrStats[0] || !attakerStats[0]) {
+  if (!victimrStats?.[0] || !attakerStats?.[0]) {
     return;
   }
   const attacker = await getCollection("pipisa").findOne({
