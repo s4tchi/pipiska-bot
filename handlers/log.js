@@ -15,8 +15,7 @@ const log = async (msg, bot) => {
   logsFrom.sort(
     (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime(),
   );
-  let userSize = (await getCollection("pipisa").findOne({ chatId, id: from }))
-    .size;
+  let userSize = (await getCollection("pipisa").findOne({ chatId, id: from }))?.size;
 
   const result = [
     `История измениния пиписьки <b>${msg.from.first_name}</b>\n`,
